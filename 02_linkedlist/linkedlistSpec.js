@@ -110,8 +110,8 @@ describe("linkedList", function() {
   it("should be able to take strings and functions both as inputs", function() {
     linkedList.addToTail('one');
     linkedList.addToTail('two');
-    expect(linkedList.search(function(node) {
-      return node.value === "two";
+    expect(linkedList.search(function(nodeValue) {
+      return nodeValue === "two";
     })).toEqual('two');
   });
 
