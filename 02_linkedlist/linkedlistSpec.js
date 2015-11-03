@@ -1,27 +1,27 @@
-describe('linkedList', function() {
+describe('A linked list', function() {
   var linkedList;
 
   beforeEach(function() {
     linkedList = new LinkedList();
   });
 
-  it('should have methods named `addToTail`, `removeHead`, and `search`', function() {
+  it('has methods `addToTail`, `removeHead`, and `search` (and maybe others?)', function() {
     expect(linkedList.addToTail instanceof Function).toBeTruthy();
     expect(linkedList.removeHead instanceof Function).toBeTruthy();
     expect(linkedList.search instanceof Function).toBeTruthy();
   });
 
-  it('should start out with head and tail undefined', function () {
+  it('starts with head and tail undefined', function () {
     expect(linkedList.head).toEqual(undefined);
     expect(linkedList.tail).toEqual(undefined);
     expect(linkedList.removeHead()).toEqual(undefined);
   });
 
-  it('should not add an undefined node', function() {
+  it('does not add an undefined node', function() {
     expect(linkedList.addToTail()).toEqual(undefined);
   });
 
-  it('should have a Node class defined to represent a node', function() {
+  it('has a Node class defined to represent a node', function() {
     expect(Node instanceof Function).toBeTruthy();
   });
 
@@ -114,7 +114,6 @@ describe('linkedList', function() {
       return nodeValue === 'two';
     })).toEqual('two');
   });
-
 
   it('should be able to store and search for objects, not just strings', function() {
     function UserNode(name, email, city) {

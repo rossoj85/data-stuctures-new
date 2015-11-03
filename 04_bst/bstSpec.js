@@ -5,7 +5,7 @@ describe('binarySearchTree', function() {
     tree = new BinarySearchTree(20);
   });
 
-  it('should have methods named `insert`, `contains`, and `depthFirstForEach`', function() {
+  it('has methods named `insert`, `contains`, `depthFirstForEach`, and others', function() {
     expect(tree.insert).toEqual(jasmine.any(Function));
     expect(tree.contains).toEqual(jasmine.any(Function));
     expect(tree.depthFirstForEach).toEqual(jasmine.any(Function));
@@ -13,19 +13,19 @@ describe('binarySearchTree', function() {
     expect(tree.size).toEqual(jasmine.any(Function));
   });
 
-  it('should take values and report size correctly', function () {
+  it('takes values and report size correctly', function () {
     tree.insert(12);
     expect(tree.size()).toEqual(2);
   });
 
-  it('should make nodes on the correct branches', function () {
+  it('makes nodes on the correct branches', function () {
     tree.insert(12);
     tree.insert(22);
     expect(tree.left.value).toEqual(12);
     expect(tree.right.value).toEqual(22);
   });
 
-  it('should sort values when adding', function() {
+  it('sorts values when adding', function() {
     expect(tree.value).toEqual(20);
     tree.insert(15);
     expect(tree.left.value).toEqual(15);
@@ -53,7 +53,7 @@ describe('binarySearchTree', function() {
     expect(tree.right.right.right.left.left.right.left.right.value).toEqual(34);
   });
 
-  it('should return true if a contains is passed a value in the tree', function() {
+  it('returns true if `contains` is passed a value in the tree', function() {
     tree.insert(15);
     tree.insert(25);
     tree.insert(5);
@@ -87,7 +87,7 @@ describe('binarySearchTree', function() {
     expect(tree.contains(32)).toEqual(false);
   });
 
-  it('should run depth first when depthFirstForEach() is run', function() {
+  it('runs depth-first when depthFirstForEach() is run', function() {
     tree.insert(15);
     tree.insert(25);
     tree.insert(5);
@@ -112,7 +112,7 @@ describe('binarySearchTree', function() {
     expect(depth).toEqual([20,15,5,0,1,14,13,12,11,17,25,21,28,50,45,30,35,33,31,34]);
   });
 
-  it('should run breadth first when breadthFirstForEach() is run', function() {
+  it('runs breadth-first (in "preorder" traversal) when breadthFirstForEach() is run', function() {
     tree.insert(15);
     tree.insert(25);
     tree.insert(5);

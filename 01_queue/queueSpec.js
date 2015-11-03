@@ -1,26 +1,26 @@
-describe('queue', function() {
+describe('A queue', function() {
   var queue;
 
   beforeEach(function() {
     queue = new Queue();
   });
 
-  it('should have "enqueue", "dequeue", and "size" methods', function() {
+  it('has `enqueue`, `dequeue`, and `size` methods', function() {
     expect(queue.enqueue instanceof Function).toBeTruthy();
     expect(queue.dequeue instanceof Function).toBeTruthy();
     expect(queue.size instanceof Function).toBeTruthy();
   });
 
-  it('should have a size of 0 initially', function() {
+  it('has size 0 initially', function() {
     expect(queue.size()).toEqual(0);
   });
 
-  it('adding to the queue should increase size by 1', function() {
+  it('increases in size when adding an item', function() {
     queue.enqueue('first in line');
     expect(queue.size()).toEqual(1);
   });
 
-  it('dequeueing one item should reduce size by one', function() {
+  it('decreases in size when removing an item', function() {
     queue.enqueue('first');
     queue.enqueue('second');
     queue.enqueue('third');
@@ -28,7 +28,7 @@ describe('queue', function() {
     expect(queue.size()).toEqual(2);
   });
 
-  it('the correct item should be returned when dequeing', function() {
+  it('returns the correct item when dequeuing', function() {
     queue.enqueue('first');
     queue.enqueue('second');
     queue.enqueue('third');
@@ -41,7 +41,7 @@ describe('queue', function() {
     expect(queue.size()).toEqual(0);
   });
 
-  it('size should not be negative, if size is zero return undefined on dequeue', function() {
+  it('handles underflow properly, by returning undefined when empty', function() {
     queue.enqueue('first in line');
     expect(queue.size()).toEqual(1);
     expect(queue.dequeue()).toEqual('first in line');
@@ -52,11 +52,26 @@ describe('queue', function() {
     expect(queue.size()).toEqual(0);
   });
 
-  it('should correctly enqueue, dequeue, enqueue, dequeue', function() {
-    queue.enqueue('a');
-    expect(queue.dequeue()).toEqual('a');
-    queue.enqueue('b');
-    expect(queue.dequeue()).toEqual('b');
+  it('handles interspersed enqueue and dequeue', function(){
+    queue.enqueue(1);
+    expect(queue.dequeue()).toBe(1);
+    queue.enqueue(2);
+    queue.enqueue(3);
+    expect(queue.dequeue()).toBe(2);
+    queue.enqueue(4);
+    expect(queue.dequeue()).toBe(3);
+    expect(queue.dequeue()).toBe(4);
+    expect(queue.dequeue()).toBe(undefined);
+  });
+
+  it('adds and removes its own items', function(){
+    var q2 = new Queue();
+    queue.enqueue('fullstack');
+    q2.enqueue('JavaScript');
+    expect(q2.dequeue()).toBe('JavaScript');
+    expect(q2.dequeue()).toBe(undefined);
+    expect(queue.dequeue()).toBe('fullstack');
+    expect(queue.dequeue()).toBe(undefined);
   });
 
 });
