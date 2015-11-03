@@ -1,31 +1,31 @@
-describe("binarySearchTree", function() {
+describe('binarySearchTree', function() {
   var tree;
- 
+
   beforeEach(function() {
     tree = new BinarySearchTree(20);
   });
- 
-  it("should have methods named 'insert', 'contains', and 'depthFirstForEach", function() {
+
+  it('should have methods named `insert`, `contains`, and `depthFirstForEach`', function() {
     expect(tree.insert).toEqual(jasmine.any(Function));
     expect(tree.contains).toEqual(jasmine.any(Function));
     expect(tree.depthFirstForEach).toEqual(jasmine.any(Function));
     expect(tree.breadthFirstForEach).toEqual(jasmine.any(Function));
     expect(tree.size).toEqual(jasmine.any(Function));
   });
- 
-  it("should take values and report size correctly", function () {
+
+  it('should take values and report size correctly', function () {
     tree.insert(12);
     expect(tree.size()).toEqual(2);
   });
- 
-  it("should make nodes on the correct branches", function () {
+
+  it('should make nodes on the correct branches', function () {
     tree.insert(12);
     tree.insert(22);
     expect(tree.left.value).toEqual(12);
     expect(tree.right.value).toEqual(22);
   });
- 
-  it("should sort values when adding", function() {
+
+  it('should sort values when adding', function() {
     expect(tree.value).toEqual(20);
     tree.insert(15);
     expect(tree.left.value).toEqual(15);
@@ -52,8 +52,8 @@ describe("binarySearchTree", function() {
     tree.insert(34);
     expect(tree.right.right.right.left.left.right.left.right.value).toEqual(34);
   });
- 
-  it("should return true if a contains is passed a value in the tree", function() {
+
+  it('should return true if a contains is passed a value in the tree', function() {
     tree.insert(15);
     tree.insert(25);
     tree.insert(5);
@@ -86,8 +86,8 @@ describe("binarySearchTree", function() {
     expect(tree.contains(16)).toEqual(false);
     expect(tree.contains(32)).toEqual(false);
   });
- 
-  it("should run depth first when depthFirstForEach() is run", function() {
+
+  it('should run depth first when depthFirstForEach() is run', function() {
     tree.insert(15);
     tree.insert(25);
     tree.insert(5);
@@ -111,8 +111,8 @@ describe("binarySearchTree", function() {
     tree.depthFirstForEach(function(val){depth.push(val);});
     expect(depth).toEqual([20,15,5,0,1,14,13,12,11,17,25,21,28,50,45,30,35,33,31,34]);
   });
- 
-  it("should run breadth first when breadthFirstForEach() is run", function() {
+
+  it('should run breadth first when breadthFirstForEach() is run', function() {
     tree.insert(15);
     tree.insert(25);
     tree.insert(5);

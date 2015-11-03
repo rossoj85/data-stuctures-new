@@ -1,4 +1,4 @@
-describe("queue", function() {
+describe('queue', function() {
   var queue;
 
   beforeEach(function() {
