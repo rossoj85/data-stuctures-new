@@ -87,7 +87,7 @@ describe('binarySearchTree', function() {
     expect(tree.contains(32)).toEqual(false);
   });
 
-  it('runs depth-first when depthFirstForEach() is run', function() {
+  it('runs depth-first (in "preorder" traversal) when depthFirstForEach() is run', function() {
     tree.insert(15);
     tree.insert(25);
     tree.insert(5);
@@ -112,7 +112,7 @@ describe('binarySearchTree', function() {
     expect(depth).toEqual([20,15,5,0,1,14,13,12,11,17,25,21,28,50,45,30,35,33,31,34]);
   });
 
-  it('runs breadth-first (in "preorder" traversal) when breadthFirstForEach() is run', function() {
+  it('runs breadth-first when breadthFirstForEach() is run', function() {
     tree.insert(15);
     tree.insert(25);
     tree.insert(5);
