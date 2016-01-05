@@ -6,93 +6,91 @@ describe('A linked list', function() {
   });
 
   it('has methods `addToTail`, `removeHead`, and `search` (and maybe others?)', function() {
-    expect(linkedList.addToTail instanceof Function).toBeTruthy();
-    expect(linkedList.removeHead instanceof Function).toBeTruthy();
-    expect(linkedList.search instanceof Function).toBeTruthy();
+    expect(typeof linkedList.addToTail).toBe('function');
+    expect(typeof linkedList.removeHead).toBe('function');
+    expect(typeof linkedList.search).toBe('function');
   });
 
-  it('starts with head and tail undefined', function () {
-    expect(linkedList.head).toEqual(undefined);
-    expect(linkedList.tail).toEqual(undefined);
-    expect(linkedList.removeHead()).toEqual(undefined);
-  });
-
-  it('does not add an undefined node', function() {
-    expect(linkedList.addToTail()).toEqual(undefined);
+  it('starts with head and tail falsy', function () {
+    expect(linkedList.head).toBeFalsy();
+    expect(linkedList.tail).toBeFalsy();
+    expect(linkedList.removeHead()).toBeFalsy();
   });
 
   it('has a Node class defined to represent a node', function() {
-    expect(Node instanceof Function).toBeTruthy();
+    expect(typeof Node).toBe('function');
   });
 
-  it('Node class should take a value argument and define next and previous to be null', function() {
+  it('Node class should take a value argument and define next and previous to be null by default', function() {
     var node = new Node('test');
-    expect(node.value).toEqual('test');
-    expect(node.next).toEqual(null);
-    expect(node.previous).toEqual(null);
+    expect(node.value).toBe('test');
+    expect(node.next).toBe(null);
+    expect(node.previous).toBe(null);
   });
 
   it('linkedlist should use Node class to add nodes', function() {
     linkedList.addToTail('first');
-    expect(linkedList.tail.constructor).toEqual(Node);
+    expect(linkedList.tail instanceof Node).toBe(true);
   });
 
   it('if a single node is added to head, it should be set to head and tail', function() {
     linkedList.addToHead('first');
-    expect(Object.keys(linkedList)).toContain('head');
-    expect(Object.keys(linkedList)).toContain('tail');
+    expect(linkedList.head.value).toBe('first');
+    expect(linkedList.head.next).toBeFalsy();
+    expect(linkedList.head.previous).toBeFalsy();
+    expect(linkedList.head).toBe(linkedList.tail);
   });
 
   it('should return the head on a removeHead', function() {
     linkedList.addToTail('first');
     linkedList.addToTail('second');
     linkedList.addToTail('third');
-    expect(linkedList.removeHead()).toEqual('first');
-    expect(linkedList.removeHead()).toEqual('second');
-    expect(linkedList.removeHead()).toEqual('third');
+    expect(linkedList.removeHead()).toBe('first');
+    expect(linkedList.removeHead()).toBe('second');
+    expect(linkedList.removeHead()).toBe('third');
   });
 
   it('should make sure the previous of any newly appointed HEAD is null', function() {
     linkedList.addToTail('first');
     linkedList.addToTail('second');
     linkedList.addToTail('third');
-    expect(linkedList.removeHead()).toEqual('first');
-    expect(linkedList.head.previous).toEqual(null);
+    expect(linkedList.removeHead()).toBe('first');
+    expect(linkedList.head.previous).toBe(null);
   });
 
   it('should make sure the next of any newly appointed TAIL is null', function() {
     linkedList.addToTail('first');
     linkedList.addToTail('second');
     linkedList.addToTail('third');
-    expect(linkedList.removeTail()).toEqual('third');
-    expect(linkedList.tail.next).toEqual(null);
+    expect(linkedList.removeTail()).toBe('third');
+    expect(linkedList.tail.next).toBe(null);
   });
 
   it('should be able to add to head or tail', function() {
     linkedList.addToTail('second');
     linkedList.addToHead('first');
     linkedList.addToTail('third');
-    expect(linkedList.removeHead()).toEqual('first');
-    expect(linkedList.removeHead()).toEqual('second');
-    expect(linkedList.removeHead()).toEqual('third');
+    expect(linkedList.removeHead()).toBe('first');
+    expect(linkedList.removeHead()).toBe('second');
+    expect(linkedList.removeHead()).toBe('third');
   });
 
   it('should return the tail on a removeTail', function() {
     linkedList.addToTail('second');
     linkedList.addToHead('third');
     linkedList.addToTail('first');
-    expect(linkedList.removeTail()).toEqual('first');
-    expect(linkedList.removeTail()).toEqual('second');
-    expect(linkedList.removeTail()).toEqual('third');
+    expect(linkedList.removeTail()).toBe('first');
+    expect(linkedList.removeTail()).toBe('second');
+    expect(linkedList.removeTail()).toBe('third');
   });
 
   it('should remove head and tail when last node is removed', function() {
-    expect(linkedList.removeHead()).toEqual(undefined);
+    expect(linkedList.removeHead()).toBeFalsy();
     linkedList.addToTail('one');
-    expect(linkedList.removeHead()).toEqual('one');
-    expect(linkedList.removeHead()).toEqual(undefined);
-    expect(linkedList.head).toEqual(undefined);
-    expect(linkedList.tail).toEqual(undefined);
+    expect(linkedList.removeHead()).toBe('one');
+    expect(linkedList.removeHead()).toBeFalsy();
+    expect(linkedList.head).toBeFalsy();
+    expect(linkedList.tail).toBeFalsy();
   });
 
   it('should return the correct values for search', function() {
@@ -101,18 +99,18 @@ describe('A linked list', function() {
     linkedList.addToTail('three');
     linkedList.addToTail('four');
     linkedList.addToTail('one');
-    expect(linkedList.search('two')).toEqual('two');
-    expect(linkedList.search('sdd')).toEqual(null);
-    expect(linkedList.search('one')).toEqual('one');
-    expect(linkedList.search('four')).toEqual('four');
+    expect(linkedList.search('two')).toBe('two');
+    expect(linkedList.search('sdd')).toBe(null);
+    expect(linkedList.search('one')).toBe('one');
+    expect(linkedList.search('four')).toBe('four');
   });
 
-  it('should be able to take strings and functions both as inputs', function() {
+  it('should be able to take strings and functions both as search inputs', function() {
     linkedList.addToTail('one');
     linkedList.addToTail('two');
     expect(linkedList.search(function(nodeValue) {
       return nodeValue === 'two';
-    })).toEqual('two');
+    })).toBe('two');
   });
 
   it('should be able to store and search for objects, not just strings', function() {
@@ -132,9 +130,9 @@ describe('A linked list', function() {
     linkedList.addToHead(new UserNode('David', 'david@fs.com', 'New York'));
     linkedList.addToHead(new UserNode('Paul', 'paul@yc.com', 'Mountain View'));
 
-    expect(linkedList.search('Nimit').email).toEqual('nimit@fs.com');
-    expect(linkedList.search('David').city).toEqual('New York');
-    expect(linkedList.search('Paul').name).toEqual('Paul');
+    expect(linkedList.search('Nimit').email).toBe('nimit@fs.com');
+    expect(linkedList.search('David').city).toBe('New York');
+    expect(linkedList.search('Paul').name).toBe('Paul');
   });
 
 });

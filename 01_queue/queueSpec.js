@@ -6,18 +6,18 @@ describe('A queue', function() {
   });
 
   it('has `enqueue`, `dequeue`, and `size` methods', function() {
-    expect(queue.enqueue instanceof Function).toBeTruthy();
-    expect(queue.dequeue instanceof Function).toBeTruthy();
-    expect(queue.size instanceof Function).toBeTruthy();
+    expect(typeof queue.enqueue).toBe('function');
+    expect(typeof queue.dequeue).toBe('function');
+    expect(typeof queue.size).toBe('function');
   });
 
   it('has size 0 initially', function() {
-    expect(queue.size()).toEqual(0);
+    expect(queue.size()).toBe(0);
   });
 
   it('increases in size when adding an item', function() {
     queue.enqueue('first in line');
-    expect(queue.size()).toEqual(1);
+    expect(queue.size()).toBe(1);
   });
 
   it('decreases in size when removing an item', function() {
@@ -25,31 +25,31 @@ describe('A queue', function() {
     queue.enqueue('second');
     queue.enqueue('third');
     queue.dequeue();
-    expect(queue.size()).toEqual(2);
+    expect(queue.size()).toBe(2);
   });
 
   it('returns the correct item when dequeuing', function() {
     queue.enqueue('first');
     queue.enqueue('second');
     queue.enqueue('third');
-    expect(queue.size()).toEqual(3);
-    expect(queue.dequeue()).toEqual('first');
-    expect(queue.size()).toEqual(2);
-    expect(queue.dequeue()).toEqual('second');
-    expect(queue.size()).toEqual(1);
-    expect(queue.dequeue()).toEqual('third');
-    expect(queue.size()).toEqual(0);
+    expect(queue.size()).toBe(3);
+    expect(queue.dequeue()).toBe('first');
+    expect(queue.size()).toBe(2);
+    expect(queue.dequeue()).toBe('second');
+    expect(queue.size()).toBe(1);
+    expect(queue.dequeue()).toBe('third');
+    expect(queue.size()).toBe(0);
   });
 
   it('handles underflow properly, by returning undefined when empty', function() {
     queue.enqueue('first in line');
-    expect(queue.size()).toEqual(1);
-    expect(queue.dequeue()).toEqual('first in line');
-    expect(queue.size()).toEqual(0);
-    expect(queue.dequeue()).toEqual(undefined);
-    expect(queue.size()).toEqual(0);
-    expect(queue.dequeue()).toEqual(undefined);
-    expect(queue.size()).toEqual(0);
+    expect(queue.size()).toBe(1);
+    expect(queue.dequeue()).toBe('first in line');
+    expect(queue.size()).toBe(0);
+    expect(queue.dequeue()).toBe(undefined);
+    expect(queue.size()).toBe(0);
+    expect(queue.dequeue()).toBe(undefined);
+    expect(queue.size()).toBe(0);
   });
 
   it('handles interspersed enqueue and dequeue', function(){
