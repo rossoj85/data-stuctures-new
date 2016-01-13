@@ -34,7 +34,7 @@ describe('HashTable', function() {
   it('should throw a custom TypeError when given non-string keys', function() {
     expect(function() {
       hashTable.set(false, 'hi');
-    }).toThrow('Keys must be strings');
+    }).toThrowError(TypeError, 'Keys must be strings');
   });
 
   it('should handle collisions', function() {
