@@ -65,6 +65,15 @@ describe('binarySearchTree', function() {
     });
   });
 
+  it('returns false if `contains` is passed a value not in the tree', function() {
+    valuesToInsert.forEach(function(value){
+        tree.insert(value);
+    });
+    [6, 23, 37, 51].forEach(function(value){
+        expect(tree.contains(value)).toBe(false);
+    });
+  });
+
   // obvious advantage: values are processed respecting their comparative order
   it('runs depth-first (in "in-order" traversal) when depthFirstForEach() is run with no option or "in-order" option', function() {
     valuesToInsert.forEach(function(value){
