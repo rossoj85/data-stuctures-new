@@ -5,8 +5,8 @@ describe('HashTable', function() {
     hashTable = new HashTable();
   });
 
-  it('should have 25 buckets', function() {
-    expect(hashTable.numBuckets).toBe(25);
+  it('should have 35 buckets', function() {
+    expect(hashTable.numBuckets).toBe(35);
   });
 
   it('should have methods named `set`, `get`, and `hasKey`', function() {
@@ -17,9 +17,9 @@ describe('HashTable', function() {
 
   it('should `hash` correctly', function() {
     // the hash function should sum the character codes of the key's letters, and mod the result by the number of buckets in the hash table instance.
-    expect(hashTable.hash('foo')).toBe(24);
-    expect(hashTable.hash('this is a key')).toBe(7);
-    expect(hashTable.hash('what about this one')).toBe(8);
+    expect(hashTable.hash('foo')).toBe(9);
+    expect(hashTable.hash('this is a key')).toBe(27);
+    expect(hashTable.hash('what about this one')).toBe(13);
   });
 
   it('should store and retrieve values by key', function() {
