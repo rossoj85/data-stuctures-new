@@ -119,26 +119,31 @@ describe('A linked list', function() {
     })).toBe('two');
   });
 
-  it('should be able to store and search for objects, not just strings', function() {
+  // This spec demonstrates the utility of the previous spec.
+  // If you are passing the last one correctly, this one should already pass!
+
+  it('should therefore be able to store and search for objects, not just strings', function() {
     function UserNode(name, email, city) {
       this.name = name;
       this.email = email;
       this.city = city;
     }
 
-    // read more about valueOf here:
-    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/valueOf
-    UserNode.prototype.valueOf = function() {
-      return this.name;
-    };
-
     linkedList.addToHead(new UserNode('Nimit', 'nimit@fs.com', 'New York'));
     linkedList.addToHead(new UserNode('David', 'david@fs.com', 'New York'));
     linkedList.addToHead(new UserNode('Paul', 'paul@yc.com', 'Mountain View'));
 
-    expect(linkedList.search('Nimit').email).toBe('nimit@fs.com');
-    expect(linkedList.search('David').city).toBe('New York');
-    expect(linkedList.search('Paul').name).toBe('Paul');
+    expect(linkedList.search(function (userNode) {
+      return userNode.name === 'Nimit';
+    }).email).toBe('nimit@fs.com');
+
+    expect(linkedList.search(function (userNode) {
+      return userNode.email === 'david@fs.com';
+    }).city).toBe('New York');
+
+    expect(linkedList.search(function (userNode) {
+      return userNode.city === 'Mountain View';
+    }).name).toBe('Paul');
   });
 
 });
