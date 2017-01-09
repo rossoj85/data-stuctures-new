@@ -19,6 +19,12 @@ describe('A linked list', function() {
 
   it('has a Node class defined to represent a node', function() {
     expect(typeof Node).toBe('function');
+    // There is already an object called `Node` in the browser.
+    // This spec makes sure you've defined your OWN `Node`.
+    expect(isNative(Node)).toBe(false);
+    function isNative(fn) {
+      return (/\{\s*\[native code]\s*\}/).test('' + fn);
+    }
   });
 
   it('Node class should take a value argument and define next and previous to be null by default', function() {
