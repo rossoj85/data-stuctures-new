@@ -14,16 +14,16 @@ describe('A circular buffer queue', function() {
   });
 
   it('has `enqueue` and `dequeue` methods', function() {
-    expect(typeof queue.enqueue).toBe('function');
-    expect(typeof queue.dequeue).toBe('function');
+    expect(queue.enqueue).toEqual(jasmine.any(Function));
+    expect(queue.dequeue).toEqual(jasmine.any(Function));
   });
 
   describe('Enqueue method', function() {
     it('should add the correct values to the queue', function() {
-      queue.enqueue(1);
-      queue.enqueue(2);
-      expect(queue.data[0]).toBe(1);
-      expect(queue.data[1]).toBe(2);
+      queue.enqueue(10);
+      queue.enqueue(21);
+      expect(queue.data[0]).toBe(10);
+      expect(queue.data[1]).toBe(21);
     });
 
     it('should only accept numbers from 0 to 255 inclusive', function() {
@@ -41,22 +41,22 @@ describe('A circular buffer queue', function() {
   describe('Dequeue method', function() {
     it('should return the correct item', function() {
       queue.enqueue(1);
-      queue.enqueue(2);
-      queue.enqueue(3);
+      queue.enqueue(6);
+      queue.enqueue(10);
       expect(queue.dequeue()).toBe(1);
-      expect(queue.dequeue()).toBe(2);
-      expect(queue.dequeue()).toBe(3);
+      expect(queue.dequeue()).toBe(6);
+      expect(queue.dequeue()).toBe(10);
     });
     it('should handle interspersed enqueuing and dequeuing', function() {
-      queue.enqueue(1);
-      queue.enqueue(2);
-      expect(queue.dequeue()).toBe(1);
       queue.enqueue(3);
-      queue.enqueue(4);
-      expect(queue.dequeue()).toBe(2);
+      queue.enqueue(10);
       expect(queue.dequeue()).toBe(3);
+      queue.enqueue(41);
+      queue.enqueue(35);
+      expect(queue.dequeue()).toBe(10);
+      expect(queue.dequeue()).toBe(41);
     });
-    it('should throw an error when dequeuing from an empty buffer', function() {
+    it('should handle underflow (throw an error when dequeuing from an empty buffer)', function() {
       expect(function() {
         queue.dequeue();
       }).toThrow();
@@ -65,29 +65,29 @@ describe('A circular buffer queue', function() {
 
   describe('Handling overflow', function() {
     it('should throw an error when enqueuing onto a full buffer', function() {
-      queue.enqueue(1);
-      queue.enqueue(2);
-      queue.enqueue(3);
-      queue.enqueue(4);
+      queue.enqueue(14);
+      queue.enqueue(7);
+      queue.enqueue(20);
+      queue.enqueue(31);
       expect(function() {
-        queue.enqueue(5);
+        queue.enqueue(7);
       }).toThrow();
     });
   });
 
   describe('Handling wrapping', function() {
     it('should wrap correctly', function() {
-      queue.enqueue(1);
-      queue.enqueue(2);
-      queue.enqueue(3);
-      queue.enqueue(4);
+      queue.enqueue(12);
+      queue.enqueue(81);
+      queue.enqueue(200);
+      queue.enqueue(32);
       queue.dequeue();
-      queue.enqueue(5);
-      expect(queue.data[0]).toBe(5);
+      queue.enqueue(14);
+      expect(queue.data[0]).toBe(14);
       expect(function() {
         queue.enqueue(6);
       }).toThrow();
-      expect(queue.dequeue()).toBe(2);
+      expect(queue.dequeue()).toBe(81);
     });
   });
 });
