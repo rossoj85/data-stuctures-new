@@ -31,3 +31,8 @@ BSTs are highly recursive structures — many of your methods should employ rec
 ### Hash Table DS
 
 Keeping track of what is going where and how to access it in this suite may be tricky. Good variable and property names will be especially helpful here; try to keep things clear.
+
+### Extra Credit: Implementing a Circular Buffer Queue using a Typed Array
+
+If you finish the first half of the workshop early, take a stab at the extra credit specs in `05_extra_credit`.
+Take a look at the [MDN reference](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray) for Typed Arrays. You'll be using a Uint8Array for this exercise.
