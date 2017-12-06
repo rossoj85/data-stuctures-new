@@ -16,7 +16,9 @@ describe('HashTable', function() {
   });
 
   it('should `hash` correctly', function() {
-    // the hash function should sum the character codes of the key's letters, and mod the result by the number of buckets in the hash table instance.
+    // the hash function should sum the character codes of the key's 
+    //letters, and mod the result by the number of buckets in the hash 
+    //table instance.
     expect(hashTable.hash('foo')).toBe(9);
     expect(hashTable.hash('this is a key')).toBe(27);
     expect(hashTable.hash('what about this one')).toBe(13);

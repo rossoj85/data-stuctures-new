@@ -41,7 +41,7 @@ LinkedList.prototype.removeHead=function(){
 }
 
 
-//THIS IS SO WE CAN SEARCH USING FUNCTIONS //why is this returning the object and not a boolean
+//THIS IS SO WE CAN SEARCH USING FUNCTIONS 
 function isFunction(maybeFn){ return typeof maybeFn === 'function'}
  
 LinkedList.prototype.search=function(predicate){
@@ -56,15 +56,3 @@ LinkedList.prototype.search=function(predicate){
     }
     return null
 }
-
-// THIS IS IF WE ARE LOOKING TO SARCH WITH STRING VALUES
-// LinkedList.prototype.search=function(predicate){
-//     
-//    var currentNode=this.head
-
-//     while(currentNode){
-//         if(currentNode.value===pedicate) return currentNode.value
-//         else currentNode=currentNode.next;
-//     }
-//     return null
-// }

@@ -207,7 +207,7 @@ describe('`pathExists`', function(){
     });
   });
 
-  xdescribe('given a graph with cycles', function(){
+  describe('given a graph with cycles', function(){
     beforeEach(function(){
 
       /* Graph (with cycles!)
