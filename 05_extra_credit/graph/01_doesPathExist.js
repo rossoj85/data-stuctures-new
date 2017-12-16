@@ -54,3 +54,17 @@ var pathExists = function(graph,start,end, visited={}){
   }
   return false
 }
+
+//RECURSIVE VERSION THAT WORKS
+function search(tree, start, finish) {
+  const node = tree[start];
+  // if(!node.length){continue;}
+  if (node.indexOf(finish) !== -1) return true; //checking to see if the finish is in that array
+  for (var i = 0; i < node.length; i++ ){
+    // if(!node.length){continue;}
+    // if(currentNode[i]===end) {exists = true} //WHY DOESNT THIS WORK??
+    console.log(start, node[i])
+    return search(tree, node[i], finish)
+  }
+  return false
+}

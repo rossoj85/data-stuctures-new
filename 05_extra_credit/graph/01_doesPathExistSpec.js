@@ -43,7 +43,7 @@ describe('`pathExists`', function(){
           +-+         +-+   +-+    +-+
 
       This binary tree is similar to the binary search tree (BST) that you
-      worked on in the workshop, but there are two key differences:
+      worke  on in the workshop, but there are two key differences:
 
       1.  Here (line 68), it is represented as an "adjacency list."  All of the
       information about the nodes and and their child nodes is stored in a

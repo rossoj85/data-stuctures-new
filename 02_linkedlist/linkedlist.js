@@ -10,7 +10,7 @@ function LinkedList(){
 }
 
 LinkedList.prototype.addToTail=function(value){
-    var newNode= new Node(value,this.tail) //the tail from the list is placed into the previous 
+    var newNode= new Node(value,this.tail) //the tail from the list is placed into the previous slot 
     if (this.tail) this.tail.next = newNode;
     else this.head = newNode; //if there is no node in the list, the new node becomes both head and tail
     this.tail = newNode
@@ -45,26 +45,31 @@ LinkedList.prototype.removeHead=function(){
 function isFunction(maybeFn){ return typeof maybeFn === 'function'}
  
 LinkedList.prototype.search=function(predicate){
+    //we want to alter the search so that it can take both funtions and regular values(strings, numbers)
+    //if the argument is a function we use the function in our serch. Otheriwse we trun the regular value
+    //into a function that checks if the node's value is equal to the predicate value 
     var isCorrect = isFunction(predicate) ? predicate: function(value){
         return value===predicate
     }
     var currentNode=this.head
 
     while(currentNode){
+        //we run the function here. Remember the function returns true or flase if the node value is 
+        //equal to the predicate 
         if(isCorrect(currentNode.value)) return currentNode.value
         else currentNode=currentNode.next;
     }
     return null
 }
 
-// THIS IS IF WE ARE LOOKING TO SARCH WITH STRING VALUES
-// LinkedList.prototype.search=function(predicate){
-//     
-//    var currentNode=this.head
+// THIS IS IF WE ARE LOOKING TO SARCH WITH STRING or number (simple) VALUES
+LinkedList.prototype.search=function(predicate){
+    
+   var currentNode=this.head
 
-//     while(currentNode){
-//         if(currentNode.value===pedicate) return currentNode.value
-//         else currentNode=currentNode.next;
-//     }
-//     return null
-// }
+    while(currentNode){
+        if(currentNode.value===pedicate) return currentNode.value
+        else currentNode=currentNode.next;
+    }
+    return null
+}

@@ -29,7 +29,7 @@ BinarySearchTree.prototype.depthFirstForEach=function(iterator,order){
     }
     //preorder = copying a tree
     //run the funciton on the current node before you run it on 
-    // bigger or smaller nodes . This is u
+    // bigger or smaller nodes . This is useful for copying a tree
     if(order==='pre-order'){
         iterator(this.value)
         if(this.left) this.left.depthFirstForEach(iterator,order)
